@@ -1,0 +1,1 @@
+echo "Servus mit Anhang" | mutt -s "Ein Test is des da Betreff?" -a ./News.pdf -- a_hirt@freenet.de
