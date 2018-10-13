@@ -28,7 +28,7 @@ done
 
 echo "Parse articles and create doc"
 output_dir="$working_dir/../output"
-python3 $working_dir/ParseArticlesAndCreateDoc.py $tmp_articles_dir $tmp_dir
+python3 $working_dir/ParseArticlesAndCreateDoc.py $tmp_articles_dir $tmp_dir "Viechtach"
 
 lowriter --convert-to pdf $tmp_dir/*.docx --outdir $output_dir/
 

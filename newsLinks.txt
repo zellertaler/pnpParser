@@ -1,0 +1,4 @@
+declare -A home_links=( 
+["Viechtach"]="https://plus.pnp.de/lokales/viechtach"
+["Regen"]="https://plus.pnp.de/lokales/regen" 
+)

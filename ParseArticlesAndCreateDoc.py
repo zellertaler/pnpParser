@@ -1,15 +1,30 @@
 import os
 import io
 import requests
+import sys
 
 #--- It's time to start creating docx document 
 #-- create docx-file
 from docx import Document
 from docx.shared import Inches 
 
-document = Document()
+s_category=sys.argv[3]
 
-import sys
+#-- set document filename
+s_output_filename =  "News"+".docx"
+s_docx_path=sys.argv[2]
+s_docx_absl_path=os.path.abspath(s_docx_path)
+
+exists = os.path.isfile(s_docx_absl_path+"/"+s_output_filename)
+if exists:
+	f = open(s_docx_absl_path+"/"+s_output_filename, 'rb')
+	document = Document(f)
+else:
+	document = Document()
+
+
+document.add_heading(s_category)
+
 s_article_path=sys.argv[1]
 s_art_absl_path=os.path.abspath(s_article_path)
 
@@ -35,7 +50,7 @@ for s_file_name in os.listdir(s_art_absl_path):
 						
 		
 		# add article-title and (if available) -subtitle to docx
-		document.add_heading(s_article_title)
+		document.add_heading(s_article_title, level=2)
 		#document.add_heading(s_article_sub_title, level=2)
 		
 		document.add_picture(b_image,width=Inches(3.25))
@@ -46,13 +61,6 @@ for s_file_name in os.listdir(s_art_absl_path):
 		document.add_page_break()
 #-------------------------------------------------------------------------------------
 
-
-#--- save the document
-#-- set document filename
-s_output_filename =  "ViechtachNews"+".docx"
-
-s_docx_path=sys.argv[2]
-s_docx_absl_path=os.path.abspath(s_docx_path)
 
 # save it
 print("Save document")
